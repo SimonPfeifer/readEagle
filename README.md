@@ -89,7 +89,7 @@ By default, the `readArray` function converts the data read from the file into �
 pos = E.readArray("PARTDATA", directory, "019_z001p004", "/PartType0/Coordinates")
 ```
 will yield the following output to stdout:
-```shell
+```
 Extracting 6117616 values for '/PartType0/Coordinates' (PartType=0) in 16 ParticleData files with tag '019_z001p004' using 16 thread(s).
 Reading array lengths took 0.35501s
 Reading data took 3.83977s
@@ -104,7 +104,7 @@ This behaviour can be modified using the two optional parameters `noH` and `phys
 pos = E.readArray("PARTDATA", directory, "019_z001p004", "/PartType0/Coordinates", noH=False, physicalUnits=False)
 ```
 will yield:
-```shell
+```
 Extracting 6117616 values for '/PartType0/Coordinates' (PartType=0) in 16 ParticleData files with tag '019_z001p004' using 16 thread(s).
 Reading array lengths took 1.26781s
 Reading data took 14.4998s
@@ -120,7 +120,7 @@ Reading the “R_500” radii of all halos in “physical CGS h-free units” wo
 R_500 = eagle.readArray("SUBFIND_GROUP", directory, tag, "FOF/Group_R_Crit500", useCGS=True)
 ```
 which would lead to the output:
-```shell
+```
 Extracting 1885062 values for 'FOF/Group_R_Crit500' (PartType=0) in 256 Subfind (group tabs) files with tag '028_z000p000' using 64 thread(s).
 Reading array lengths took 13.646s
 Reading data took 42.9861s
@@ -147,5 +147,7 @@ This only modifies the internal behaviour of the function. Once the function ret
 
 The last one, `oldSubfindFix`, is a workaround for a bug in the older versions of SUBFIND where the number of particle IDs stored was written as an int instead of a long long. Switching this option on allows to read the particle IDs out of old SUBFIND data sets with more than 10^9 particles. All the other quantities can safely be read without this fix.
 ```python
-pos = E.readArray("SUBFIND_PARTICLES", directory, "019_z001p004", "IDs/ParticleID", oldSubfindFix=True)
+part_ids = E.readArray("SUBFIND_PARTICLES", directory, "019_z001p004", "IDs/ParticleID", oldSubfindFix=True)
 ```
+
+There are some examples in the `example/` directory that show the application of the package.
