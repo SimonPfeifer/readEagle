@@ -28,4 +28,56 @@ This will install the module into your personal python directory and assumes tha
 
 To quickly check if the installation was successful, run `python` in your terminal and import the package using `import eagle`.
 
+## Reading data
+
+The module offers two functions. One to read attributes and one to read arrays:
+
+```python
+import eagle as E
  
+z = E.readAttribute(fileType,  directory,  tag,   attribute)
+M_200 = E.readArray(fileType,  directory,  tag,   array)
+```
+
+Both routines are constructed in the same way and need to be supplied with the same 4 arguments. The first one, `fileType`, is a string describing the type of file and data read. The allowed values of this parameter are:  
+
+|fileType | Description | Example of data that can be read |
+| --- | --- | --- |
+|“FOF” | FoF group informations | Group centre of mass, group length, group star formation rate |
+|“FOF_PARTICLES” | IDs of the particles in a FOF group | Particle IDs |
+|“SNIP_FOF” | FoF group informations (snipshot) | Group centre of mass, group length, group star formation rate |
+|“SNIP_FOF_PARTICLES” | IDs of the particles in a FOF group (snipshot) | Particle IDs |
+|“PARTDATA” | Particles that are in a FOF group | Particle Mass, velocity, entropy, stellar age |
+|“SNIP_PARTDATA” | Particles that are in a FOF group (snipshot) | Particle Mass, velocity, entropy, stellar age |
+|“SNAPSHOT” | Full information about all particles | Particle Mass, velocity, entropy, stellar age |
+|“SNIPSHOT” | Reduced information about all particles | Mass, velocity |
+|“SUBFIND” | Subhalo information | Subhalo mass, subhalo centre of potential |
+|“SUBFIND_GROUP” | Subfind halo information | Group centre of potential, M_200, R_500 |
+|“SUBFIND_PARTICLES” | IDs of the particles in a subhalo | Particle IDs |
+|“SNIP_SUBFIND” | Subhalo information (snipshot) | Subhalo mass, subhalo centre of potential |
+|“SNIP_SUBFIND_GROUP” | Subfind halo information (snipshot) | Group centre of potential, M_200, R_500 |
+|“SNIP_SUBFIND_PARTICLES” | IDs of the particles in a subhalo (snipshot) | Particle IDs |
+
+
+The second argument is the location of the directory containing the data. For instance:
+```python
+directory = "hpcdata0/simulations/BAHAMAS/RUNNING/HYDRO/L400N1024/nrun/run_m0.00025/data/"
+```
+Note that not all simulation directories are structured the same way. For example, the `MASSIVE_NEUTRINOS` directory splits the particle data and SUBFIND output into separate folders. That means that you would have to modify the directory depending on whether you are reading data from a snapshot (e.g. `PARTDATA`) or SUBFIND output (e.g. `SUBFIND`), i.e. which `fileType` argument you are using.
+
+The third argument is the `tag` of the output. This is the part of the filename that contains the snapshot number and sometimes the redshift:
+```python
+tag_without_redshift = "032"
+tag_with_redshift = "032_z000p000"
+```
+Check the simulation directory to see which format is used.
+
+
+The last argument is the name of the `array` or `attribute` in the HDF5 file structure you want to read. For instance:
+
+```python
+attribute = "/Header/BoxSize"
+array = "/PartType1/Coordinates"
+```
+
+The routine returns a numpy array containing the values extracted from the files. The order of the elements is preserved and the type of the values is the same than stored in the HDF5 files. 
