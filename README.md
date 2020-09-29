@@ -36,7 +36,7 @@ The module offers two functions. One to read attributes and one to read arrays:
 import eagle as E
  
 z = E.readAttribute(fileType,  directory,  tag,   attribute)
-M_200 = E.readArray(fileType,  directory,  tag,   array)
+pos = E.readArray(fileType,  directory,  tag,   array)
 ```
 
 Both routines are constructed in the same way and need to be supplied with the same 4 arguments. The first one, `fileType`, is a string describing the type of file and data read. The allowed values of this parameter are:  
@@ -76,8 +76,76 @@ Check the simulation directory to see which format is used.
 The last argument is the name of the `array` or `attribute` in the HDF5 file structure you want to read. For instance:
 
 ```python
-attribute = "/Header/BoxSize"
-array = "/PartType1/Coordinates"
+attribute = "/Header/Redshift"
+array = "/PartType0/Coordinates"
 ```
 
 The routine returns a numpy array containing the values extracted from the files. The order of the elements is preserved and the type of the values is the same than stored in the HDF5 files. 
+
+### Unit conversion
+
+By default, the `readArray` function converts the data read from the file into “h-free” physical units. This is done by reading the relevant conversion factors from the HDF5 file. The conversions applied to the data are reported by the function and printed to the standard output. For instance, reading the particle coordinates at redshift 1 with this code:
+```python
+pos = E.readArray("PARTDATA", directory, "019_z001p004", "/PartType0/Coordinates")
+```
+will yield the following output to stdout:
+```shell
+Extracting 6117616 values for '/PartType0/Coordinates' (PartType=0) in 16 ParticleData files with tag '019_z001p004' using 16 thread(s).
+Reading array lengths took 0.35501s
+Reading data took 3.83977s
+Converting to physical units. (Multiplication by a^1, a=0.498972)
+Converting to h-free units. (Multiplication by h^-1, h=0.6777)
+```
+
+This implies that the data in the file (comoving h-full units) has been converted to physical h-free units by the function. No further conversion is required. This relies on the fact that the units written in the file are correct. **Always check that this is the case by looking at the standard output!**
+
+This behaviour can be modified using the two optional parameters `noH` and `physicalUnits`. If `noH` is set to False then the routine does not apply any h-factor correction. If `physicalUnits` is set to False then no a-factor correction is applied. Running with `noH=False, physicalUnits=False` will hence read in the data as it is in the file without applying any correction. For instance, reading the particle coordinates at redshift 1 with this code:
+```python
+pos = E.readArray("PARTDATA", directory, "019_z001p004", "/PartType0/Coordinates", noH=False, physicalUnits=False)
+```
+will yield:
+```shell
+Extracting 6117616 values for '/PartType0/Coordinates' (PartType=0) in 16 ParticleData files with tag '019_z001p004' using 16 thread(s).
+Reading array lengths took 1.26781s
+Reading data took 14.4998s
+```
+Not displaying (and applying) any correction. The h and a factor corrections can obviously also be applied independently.
+
+### CGS unit conversion
+
+The `readArray` function can also directly convert the data to CGS units. This is done by adding `useCGS=True` to the parameter of the function when calling it. This is independant of the a-factor and h-factor corrections.
+
+Reading the “R_500” radii of all halos in “physical CGS h-free units” would be done using the call:
+```python
+R_500 = eagle.readArray("SUBFIND_GROUP", directory, tag, "FOF/Group_R_Crit500", useCGS=True)
+```
+which would lead to the output:
+```shell
+Extracting 1885062 values for 'FOF/Group_R_Crit500' (PartType=0) in 256 Subfind (group tabs) files with tag '028_z000p000' using 64 thread(s).
+Reading array lengths took 13.646s
+Reading data took 42.9861s
+Converting to physical units. (Multiplication by a^1, a=1)
+Converting to h-free units. (Multiplication by h^-1, h=0.6777)
+Converting to CGS units. (Multiplication by 3.08568e+24)
+```
+
+### Additional options
+
+There are three additional options to control the behaviour of the `readArray` routine.
+
+The first one, `verbose`, controls whether the function writes what it does to the standard output. Setting `verbose=False` will switch off all the output. Example:
+```python
+pos = E.readArray("PARTDATA", directory, "019_z001p004", "/PartType0/Coordinates", verbose=False)
+```
+
+The second one controls the number of threads used to read the file in parallel. This is done by giving a value to the parameter `numThreads` where the default is 16. Note that increasing the number of threads does not seem to lead to a significant improvement in speed.
+```python
+pos = E.readArray("PARTDATA", directory, "019_z001p004", "/PartType0/Coordinates") # Read the data using 16 threads
+pos = E.readArray("PARTDATA", directory, "019_z001p004", "/PartType0/Coordinates", numThreads=32) # Read the data using 32 threads
+```
+This only modifies the internal behaviour of the function. Once the function returns, you are given a plain old numpy array without any fancy features and can use it as any other numpy array in a single-threaded python context.
+
+The last one, `oldSubfindFix`, is a workaround for a bug in the older versions of SUBFIND where the number of particle IDs stored was written as an int instead of a long long. Switching this option on allows to read the particle IDs out of old SUBFIND data sets with more than 10^9 particles. All the other quantities can safely be read without this fix.
+```python
+pos = E.readArray("SUBFIND_PARTICLES", directory, "019_z001p004", "IDs/ParticleID", oldSubfindFix=True)
+```
