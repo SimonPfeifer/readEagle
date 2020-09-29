@@ -1,0 +1,13 @@
+Note that there is no guaranty that this module compiles, works, returns
+sensible results or allows you to do science. It is probably not bug free.
+Please always check the results you get make sense.
+
+Run:
+
+python setup.py install --user
+
+to create and install the package. 
+On the cosma machines you will need the following modules:
+
+gnu_comp/c4/4.8.1
+hdf5/1.8.9-mt
