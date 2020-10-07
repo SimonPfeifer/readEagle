@@ -16,7 +16,7 @@ To install the `readEagle` package, `ssh` into one of the computing clusters (e.
 module load hdf5/1.8.XX
 ```
 
-I have only tested the installation with HDF5 1.8, where the last version I used was 1.8.21. Using the HDF5 library on the computing clusters rather than a privately installed version has one caveat (saftey feature), and that it that you can only use the `ReadEagle` if you are on one of the clusters. It won't work on "external" or your "star-pc" since it won't be able to find the HDF5 library. This has almost no draw-backs since loading simulation data takes a lot of memory and safes you accidentally crashing you pc.
+I have only tested the installation with HDF5 1.8, where the last version I used was 1.8.21. Using the HDF5 library on the computing clusters rather than a privately installed version has one caveat (saftey feature), and that is that you can only use the `readEagle` if you are on one of the clusters. It won't work on "external" or your "star-pc" since it won't be able to find the HDF5 library. This has almost no draw-backs since loading simulation data takes a lot of memory and safes you from accidentally crashing your pc.
 
 Once the HDF5 library is loaded, run the following commands:
 ```
