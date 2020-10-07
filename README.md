@@ -1,6 +1,6 @@
 # readEagle
 
-This python module is aimed at reading in data from all the possible EALGE and BAHAMAS hdf5 output files. It also applies h-factor corrections and can return the quantities in physical or comoving coordinates. The reading of the data uses an underlying set of C++ routines that read the different files that make up a snapshot in parrallel for higher throughput.
+This python module can be used to read in data from the EALGE and BAHAMAS simultion HDF5 output files. It also applies h-factor corrections and can return the quantities in physical or comoving coordinates. The reading of the data uses an underlying set of C++ routines that read the different files that make up a snapshot in parrallel for higher throughput.
 
 Disclaimer: There is no reason to believe that the routine presented here will work, return correct results, compile or not create a black hole absorbing the Universe. Please check what you do and verify that the results returned are sensible.
 
