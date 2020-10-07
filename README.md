@@ -1,4 +1,4 @@
-# ReadEagle
+# readEagle
 
 This python module is aimed at reading in data from all the possible EALGE and BAHAMAS hdf5 output files. It also applies h-factor corrections and can return the quantities in physical or comoving coordinates. The reading of the data uses an underlying set of C++ routines that read the different files that make up a snapshot in parrallel for higher throughput.
 
