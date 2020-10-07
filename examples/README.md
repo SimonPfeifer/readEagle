@@ -35,7 +35,7 @@ The first argument required by `readEagle is a `fileType`, a string describing t
 ## Array data
 The last argument required by `readEagle` refers directly to the HDF5 data within the given `fileType` and is written in a directory-like format:
 ```python
-array_example = '/path/to/data'
+array_example = "/path/to/data"
 ```
 You can use the lists below to find the exact data location. A helpful command is `h5ls` which you can use to browse the data structure of a HDF5 simulation output file. A quick example would be:
 ```
