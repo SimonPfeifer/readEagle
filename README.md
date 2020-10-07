@@ -10,7 +10,7 @@ The source code and examples were written by Matthieu Schaller. The python wrapp
 
 This installation guide is specific to the LJMU HPC computing clusters.
 
-To install the `ReadEagle` package, `ssh` into one of the computing clusters (e.g. famine) and load the HDF5 library using:
+To install the `readEagle` package, `ssh` into one of the computing clusters (e.g. famine) and load the HDF5 library using:
 
 ```
 module load hdf5/1.8.XX
