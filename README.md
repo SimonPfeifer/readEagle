@@ -35,29 +35,16 @@ The module offers two functions. One to read attributes and one to read arrays:
 ```python
 import eagle as E
  
-z = E.readAttribute(fileType,  directory,  tag,   attribute)
-pos = E.readArray(fileType,  directory,  tag,   array)
+attr = E.readAttribute(file_type,  directory,  tag,   attribute)
+arr = E.readArray(file_type,  directory,  tag,   array)
 ```
 
-Both routines are constructed in the same way and need to be supplied with the same 4 arguments. The first one, `fileType`, is a string describing the type of file and data read. The allowed values of this parameter are:  
-
-|fileType | Description | Example of data that can be read |
-| --- | --- | --- |
-|“FOF” | FoF group informations | Group centre of mass, group length, group star formation rate |
-|“FOF_PARTICLES” | IDs of the particles in a FOF group | Particle IDs |
-|“SNIP_FOF” | FoF group informations (snipshot) | Group centre of mass, group length, group star formation rate |
-|“SNIP_FOF_PARTICLES” | IDs of the particles in a FOF group (snipshot) | Particle IDs |
-|“PARTDATA” | Particles that are in a FOF group | Particle Mass, velocity, entropy, stellar age |
-|“SNIP_PARTDATA” | Particles that are in a FOF group (snipshot) | Particle Mass, velocity, entropy, stellar age |
-|“SNAPSHOT” | Full information about all particles | Particle Mass, velocity, entropy, stellar age |
-|“SNIPSHOT” | Reduced information about all particles | Mass, velocity |
-|“SUBFIND” | Subhalo information | Subhalo mass, subhalo centre of potential |
-|“SUBFIND_GROUP” | Subfind halo information | Group centre of potential, M_200, R_500 |
-|“SUBFIND_PARTICLES” | IDs of the particles in a subhalo | Particle IDs |
-|“SNIP_SUBFIND” | Subhalo information (snipshot) | Subhalo mass, subhalo centre of potential |
-|“SNIP_SUBFIND_GROUP” | Subfind halo information (snipshot) | Group centre of potential, M_200, R_500 |
-|“SNIP_SUBFIND_PARTICLES” | IDs of the particles in a subhalo (snipshot) | Particle IDs |
-
+Both routines are constructed in the same way and need to be supplied with the same 4 arguments. The first one, `file_type`, is a string describing the type of file and data read. An example of some allowed arguments are:
+```python
+file_type = "SNAPSHOT"
+file_type = "FOF"
+file_type = "SUBFIND"
+```
 
 The second argument is the location of the directory containing the data. For instance:
 ```python
@@ -81,6 +68,8 @@ array = "/PartType0/Coordinates"
 ```
 
 The routine returns a numpy array containing the values extracted from the files. The order of the elements is preserved and the type of the values is the same than stored in the HDF5 files. 
+
+There are lists of acceptabe `file_type` and `array` arguments in the `examples/` directory.
 
 ### Unit conversion
 
@@ -150,4 +139,4 @@ The last one, `oldSubfindFix`, is a workaround for a bug in the older versions o
 part_ids = E.readArray("SUBFIND_PARTICLES", directory, "019_z001p004", "IDs/ParticleID", oldSubfindFix=True)
 ```
 
-There are some examples in the `example/` directory that show the application of the package.
+There are some examples in the `examples/` directory that show the application of the package as well as lists of acceptable `file_type` and `array` arguments.
