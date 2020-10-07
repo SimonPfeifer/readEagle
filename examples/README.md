@@ -43,7 +43,7 @@ h5ls groups_032.0.hdf5/FOF
 ```
 For a more user friendly way of browsing a HDF5 file you can use HDF5View which presents the file structure in a GUI.
 
-#Snapshot
+# Snapshot
 Sanpshots store the complete information about all particles in the simulation with associated particle type number:
 
 | Number | Particle |
