@@ -7,13 +7,13 @@ Recall that the general way to read in data using `readEagle` looks something li
 ```python
 import eagle as E
  
-attr = E.readAttribute(fileType,  directory,  tag,   attribute)
-arr = E.readArray(fileType,  directory,  tag,   array)
+attr = E.readAttribute(file_type,  directory,  tag,   attribute)
+arr = E.readArray(file_type,  directory,  tag,   array)
 ```
 
 ## File type
 
-The first argument required by `readEagle is a `fileType`, a string describing the type of file and data to read. The allowed values of this argument are:  
+The first argument required by `readEagle` is a `file_type`, a string describing the type of file and data to read. The allowed values of this argument are:  
 
 |fileType | Description | Example of data that can be read |
 | --- | --- | --- |
