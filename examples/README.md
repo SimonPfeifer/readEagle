@@ -17,20 +17,20 @@ The first argument required by `readEagle` is a `file_type`, a string describing
 
 |fileType | Description | Example of data that can be read |
 | --- | --- | --- |
-|“FOF” | FoF group informations | Group centre of mass, group length, group star formation rate |
-|“FOF_PARTICLES” | IDs of the particles in a FOF group | Particle IDs |
-|“SNIP_FOF” | FoF group informations (snipshot) | Group centre of mass, group length, group star formation rate |
-|“SNIP_FOF_PARTICLES” | IDs of the particles in a FOF group (snipshot) | Particle IDs |
-|“PARTDATA” | Particles that are in a FOF group | Particle Mass, velocity, entropy, stellar age |
-|“SNIP_PARTDATA” | Particles that are in a FOF group (snipshot) | Particle Mass, velocity, entropy, stellar age |
-|“SNAPSHOT” | Full information about all particles | Particle Mass, velocity, entropy, stellar age |
-|“SNIPSHOT” | Reduced information about all particles | Mass, velocity |
-|“SUBFIND” | Subhalo information | Subhalo mass, subhalo centre of potential |
-|“SUBFIND_GROUP” | Subfind halo information | Group centre of potential, M_200, R_500 |
-|“SUBFIND_PARTICLES” | IDs of the particles in a subhalo | Particle IDs |
-|“SNIP_SUBFIND” | Subhalo information (snipshot) | Subhalo mass, subhalo centre of potential |
-|“SNIP_SUBFIND_GROUP” | Subfind halo information (snipshot) | Group centre of potential, M_200, R_500 |
-|“SNIP_SUBFIND_PARTICLES” | IDs of the particles in a subhalo (snipshot) | Particle IDs |
+| FOF | FoF group informations | Group centre of mass, group length, group star formation rate |
+| FOF_PARTICLES | IDs of the particles in a FOF group | Particle IDs |
+| SNIP_FOF | FoF group informations (snipshot) | Group centre of mass, group length, group star formation rate |
+| SNIP_FOF_PARTICLES | IDs of the particles in a FOF group (snipshot) | Particle IDs |
+| PARTDATA | Particles that are in a FOF group | Particle Mass, velocity, entropy, stellar age |
+| SNIP_PARTDATA | Particles that are in a FOF group (snipshot) | Particle Mass, velocity, entropy, stellar age |
+| SNAPSHOT | Full information about all particles | Particle Mass, velocity, entropy, stellar age |
+| SNIPSHOT | Reduced information about all particles | Mass, velocity |
+| SUBFIND | Subhalo information | Subhalo mass, subhalo centre of potential |
+| SUBFIND_GROUP | Subfind halo information | Group centre of potential, M_200, R_500 |
+| SUBFIND_PARTICLES | IDs of the particles in a subhalo | Particle IDs |
+| SNIP_SUBFIND | Subhalo information (snipshot) | Subhalo mass, subhalo centre of potential |
+| SNIP_SUBFIND_GROUP | Subfind halo information (snipshot) | Group centre of potential, M_200, R_500 |
+| SNIP_SUBFIND_PARTICLES | IDs of the particles in a subhalo (snipshot) | Particle IDs |
 
 ## Array data
 The last argument required by `readEagle` refers directly to the HDF5 data within the given `fileType` and is written in a directory-like format:
