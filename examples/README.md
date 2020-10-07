@@ -43,7 +43,7 @@ h5ls groups_032.0.hdf5/FOF
 ```
 For a more user friendly way of browsing a HDF5 file you can use HDF5View which presents the file structure in a GUI.
 
-# Snapshot
+### Snapshot
 Sanpshots store the complete information about all particles in the simulation with associated particle type number:
 
 | Number | Particle |
@@ -177,7 +177,7 @@ The particle data available for each particle type is given in the table below.
 | PartType5  |      SubGroupNumber                      |Subgroup number particle is in|
 | PartType5  |      Velocity                            |Co-moving velocities. Physical v_p = a dx/dt  = Velocities a to the power of1/2 U_V [cm/s]|
 
-# FOF
+### FOF
 
 FOF group numbers begin at 1 and are sorted by mass in descending order. Spherical overdensities associated with a FOF group use the negative of the group number. A particle can only be associated with one spherical overdensity.
 
@@ -278,7 +278,7 @@ The following arrays can be found in the FOF group files:
 | FOF | Stars/SmoothedMetallicity               |Smoothed mass fraction of elements heavier than Helium | 
 | FOF | Velocity                                |Co-moving velocities. Physical v_p = a dx/dt  = Velocities a to the power of1/2 U_V [cm/s](A bug affects this quantity. The correct factor is a^-1 and not a^0.5) | 
 
-# Subfind
+### Subfind
 
 Subgroup numbers begin at 0. Subgroup 0 of a FOF group corresponds to the most massive subgroup within the group.
 
