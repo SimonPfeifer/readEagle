@@ -102,12 +102,12 @@ The particle data available for each particle type is given in the table below.
 | PartType0  |     TotalMassFromAGB                     |Total mass received from AGB and their progenitors|
 | PartType0  |     TotalMassFromSNII                    |Total mass received from SNII and their progenitors|
 | PartType0  |     TotalMassFromSNIa                    |Total mass received from SNIa|
-| PartType0  |     Velocity                             |Co-moving velocities. Physical v_p = a dx/dt  = Velocities a to the power of1/2 U_V [cm/s]|
+| PartType0  |     Velocity                             |Co-moving velocities. Physical v_p = a dx/dt  = Velocities a to the power of1/2 U_V [cm/s](A bug affects this quantity. The correct factor is a^-1 and not a^0.5) |
 | PartType1  |     Coordinates                          |Co-moving coordinates. Physical: r = a x = Coordinates h to the power of-1 a U_L [cm]|
 | PartType1  |     GroupNumber                          |FoF group number particle is in|
 | PartType1  |     ParticleIDs                          |Unique particle identifier|
 | PartType1  |     SubGroupNumber                       |Subgroup number particle is in|
-| PartType1  |     Velocity                             |Co-moving velocities. Physical v_p = a dx/dt  = Velocities a to the power of1/2 U_V [cm/s]|
+| PartType1  |     Velocity                             |Co-moving velocities. Physical v_p = a dx/dt  = Velocities a to the power of1/2 U_V [cm/s](A bug affects this quantity. The correct factor is a^-1 and not a^0.5) |
 | PartType4  |      AExpMaximumTemperature              |Expansion factor a when particle had highest temperature|
 | PartType4  |      BirthDensity                        |Local gas density (physical units)  when a star particle was born. No a-factor correction as the a-factor at birth time is factored in.|
 | PartType4  |      Coordinates                         |Co-moving coordinates. Physical: r = a x = Coordinates h to the power of-1 a U_L [cm]|
@@ -175,7 +175,7 @@ The particle data available for each particle type is given in the table below.
 | PartType5  |      ParticleIDs                         |Unique particle identifier|
 | PartType5  |      SmoothingLength                     |Co-moving smoothing length. Physical h = SmoothingLength h to the power of-1 a U_L [cm]|
 | PartType5  |      SubGroupNumber                      |Subgroup number particle is in|
-| PartType5  |      Velocity                            |Co-moving velocities. Physical v_p = a dx/dt  = Velocities a to the power of1/2 U_V [cm/s]|
+| PartType5  |      Velocity                            |Co-moving velocities. Physical v_p = a dx/dt  = Velocities a to the power of1/2 U_V [cm/s](A bug affects this quantity. The correct factor is a^-1 and not a^0.5) |
 
 ### FOF
 
