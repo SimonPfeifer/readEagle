@@ -33,7 +33,7 @@ The first argument required by `readEagle` is a `file_type`, a string describing
 | SNIP_SUBFIND_PARTICLES | IDs of the particles in a subhalo (snipshot) | Particle IDs |
 
 ## Array data
-The last argument required by `readEagle` refers directly to the HDF5 data within the given `fileType` and is written in a directory-like format:
+The last argument required by `readEagle` refers directly to the HDF5 data within the given `file_type` and is written in a directory-like format:
 ```python
 array_example = "/path/to/data"
 ```
